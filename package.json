@@ -4,7 +4,7 @@
   "description": "Database ORM",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"(sin tests por ahora)\" && exit 0"
   },
   "keywords": [],
   "author": "",

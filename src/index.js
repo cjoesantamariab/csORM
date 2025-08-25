@@ -28,6 +28,7 @@ export function model(table, schema, adapter) {
     schema,
 
     /** Insert con validación runtime */
+    // @ts-ignore
     async insert(data) {
       validate(schema, data)
       const cols = Object.keys(data)
@@ -39,6 +40,7 @@ export function model(table, schema, adapter) {
     },
 
     /** Update simple por igualdad en where */
+    // @ts-ignore
     async update(where, data) {
       validate(schema, data)
       const setCols = Object.keys(data)
@@ -55,6 +57,7 @@ export function model(table, schema, adapter) {
     },
 
     /** Delete simple */
+    // @ts-ignore
     async remove(where) {
       const keys = Object.keys(where)
       const whereSql = keys.map((k,i)=>`"${k}" = $${i+1}`).join(' AND ')

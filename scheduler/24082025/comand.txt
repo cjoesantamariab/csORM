@@ -1,15 +1,3 @@
-mkdir csorm
-
-npm init -y
-
-change name : "@cjoesb/csorm"
-
-mkdir -p .github/workflows
-
-
-
-Roadmap
-
 0.1.0: Núcleo + SQLite
 
 0.2.0: Relaciones y migraciones simples

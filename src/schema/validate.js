@@ -27,6 +27,7 @@ export function validate(schema, data) {
       case 'date': if (!(v instanceof Date)) throw new Error(`'${k}' debe ser Date`); break
       case 'object': if (typeof v !== 'object' || Array.isArray(v)) throw new Error(`'${k}' debe ser object`); break
       case 'buffer':
+        // @ts-ignore
         if (!(v instanceof Uint8Array) && !(globalThis.Buffer && v instanceof Buffer))
           throw new Error(`'${k}' debe ser Buffer/Uint8Array`)
         break

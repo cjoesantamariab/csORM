@@ -4,18 +4,27 @@
  * Validador runtime simple
  * @param {Record<string,string>} schema - ej: { id:'number', email:'string?', created_at:'date' }
  * @param {Record<string,any>} data
+ * @param {{ mode?: 'insert'|'update' }} [opts]
  */
-export function validate(schema, data) {
+export function validate(schema, data, opts = {}) {
+  const mode = opts.mode ?? 'insert';
+
+  // 1) Campos desconocidos
   for (const k of Object.keys(data)) {
     if (!(k in schema)) throw new Error(`Campo desconocido: ${k}`)
   }
+
+  // 2) Recorremos el esquema
   for (const [k, rule] of Object.entries(schema)) {
     const optional = rule.endsWith('?')
     const base = optional ? rule.slice(0, -1) : rule
     const v = data[k]
 
+    // En update: si el campo no viene en 'data', no lo validamos ni lo exigimos
     if (v == null) {
-      if (!optional) throw new Error(`'${k}' es requerido`)
+      if (mode === 'insert' && !optional) {
+        throw new Error(`'${k}' es requerido`)
+      }
       continue
     }
 
@@ -27,7 +36,6 @@ export function validate(schema, data) {
       case 'date': if (!(v instanceof Date)) throw new Error(`'${k}' debe ser Date`); break
       case 'object': if (typeof v !== 'object' || Array.isArray(v)) throw new Error(`'${k}' debe ser object`); break
       case 'buffer':
-        // @ts-ignore
         if (!(v instanceof Uint8Array) && !(globalThis.Buffer && v instanceof Buffer))
           throw new Error(`'${k}' debe ser Buffer/Uint8Array`)
         break

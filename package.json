@@ -1,14 +1,29 @@
 {
   "name": "@cjoesb/csorm",
-  "version": "1.0.0",
-  "description": "Database ORM",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"(sin tests por ahora)\" && exit 0"
+  "version": "0.1.0",
+  "description": "Mini ORM educativo para Node.js (ESM) con validación en runtime",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js"
+    }
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "files": ["src", "README.md", "LICENSE.md"],
+  "scripts": {
+    "test": "echo \"(sin tests por ahora)\" && exit 0",
+    "demo:sqlite": "node examples/sqlite-demo.js"
+  },
+  "keywords": ["orm","sqlite","node","jsdoc","education"],
+  "author": "Cristian Santamaría",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjoesantamariab/csORM.git"
+  },
+  "bugs": { "url": "https://github.com/cjoesantamariab/csORM/issues" },
+  "homepage": "https://github.com/cjoesantamariab/csORM#readme",
+  "engines": { "node": ">=18" },
   "dependencies": {
     "sqlite3": "^5.1.7"
   }

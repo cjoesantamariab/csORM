@@ -37,3 +37,4 @@ db.serialize(async () => {
   const removed = await User.remove({ id: 1 });
   console.log("Eliminado:", removed);
 });
+
